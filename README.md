@@ -8,6 +8,10 @@
   - Manage how many times you're absent from each classes, category, etc.
   - Display how many times left till the limit.
 
+## dependencies
+
+  - [0k/shyaml](https://github.com/0k/shyaml)
+
 ## usage
 
   - Add new absence: `absences add [absent] <category> <date>`
