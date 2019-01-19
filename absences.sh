@@ -80,6 +80,25 @@ function writeData.addCategory()
 }
 # }}}
 
+# aleart: echo list of alearted categories {{{2
+function aleart()
+{
+  local regex_limit="[^:]*:"
+  local alearted_list=()
+  local aleart_line=5 # TODO: pull this from config
+  local category limit data absences remain
+  while read -r category limit data;do
+    [[ "$limit" =~ $regex_limit ]] || continue
+    category=${category%:}
+    absences=${#data[@]}
+    remain=$((limit - absences))
+
+    if [[ $remain -lt $aleart_line ]]; then
+      alearted_list+="$category: $remain"
+    fi
+  done < "$ABSENCE_DATAFILE"
+
+  echo "${alearted_list[@]}" | highlight
 }
 # }}}
 
