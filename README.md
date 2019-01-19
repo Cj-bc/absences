@@ -18,7 +18,8 @@
 
 ## config file
 
-  `absences` read config at `$HOME/.config/absences/confg`
+  `absences` read config at `$HOME/.config/absences/config`
+  It's written in YAML style, though we don't use anything but hash
   available configs are:
 
     - `datapath`: the path to file that contains raw absences data
