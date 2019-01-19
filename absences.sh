@@ -55,9 +55,19 @@ function writeData()
 # }}}
 
 # writeConfig: Write config file {{{2
-function writeConfig()
+# @param <string category> <string limit>
+# @return 0 success
+function writeData.addCategory()
 {
-  :
+  if [ "$#" -eq 1 ];then
+    echo "${1}:" >> $ABSENCE_DATAFILE
+  else
+    echo "${1}: ${2}:" >> $ABSENCE_DATAFILE
+  fi
+  return $EX_SUCCESS
+}
+# }}}
+
 }
 # }}}
 
