@@ -14,14 +14,15 @@ ABSENCE_CONFIGFILE="$HOME/.config/absences/config"
 
 # utility functions {{{
 
-# highlight: add hightlight to the output {{{2
-function highlight()
+# readConfig: read config file {{{2
+# @param <string key>
+# @return <string value>
+function readConfig()
 {
-  # TODO: I' do this later
-  if [ -p /dev/stdin ];then
-    input=$(cat -)
-    echo "$input"
-  fi
+  local key=$0
+  local value
+  value=$(shyaml get-value alert_line.default "$key" < "$ABSENCE_CONFIGFILE" 2>/dev/null) || return $EX_DATAERR
+  echo "$value"
   return $EX_SUCCESS
 }
 # }}}
@@ -39,6 +40,18 @@ function resolveDate()
     "yesterday") echo "$(($(date +%Y%m%d) -1))";;
     * ) return $EX_DATAERR;;
   esac
+  return $EX_SUCCESS
+}
+# }}}
+
+# highlight: add hightlight to the output {{{2
+function highlight()
+{
+  # TODO: I' do this later
+  if [ -p /dev/stdin ];then
+    input=$(cat -)
+    echo "$input"
+  fi
   return $EX_SUCCESS
 }
 # }}}
