@@ -15,3 +15,11 @@
   - Show summary: `absences`
   - Show details for category: `absences <category>`
   - Show categories that is about to over limit: `absences alert`
+
+## config file
+
+  `absences` read config at `$HOME/.config/absences/confg`
+  available configs are:
+
+    - `datapath`: the path to file that contains raw absences data
+    - `alert_line`: number. define when to alert
