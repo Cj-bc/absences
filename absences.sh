@@ -70,13 +70,14 @@ for obj in "$@";do
     "add")
       shift
       case "$1" in
-        "category" ) writeConfig category "$2";;
-        "absent"|* ) writeData "$@";;
+        "category" )shift; writeData.addCategory "$@";;
+        "absent" )shift; writeData "$@";;
+        * )shift; writeData "$@";;
       esac
       break
       ;;
-    "alreat") absences::cout absences.aleart; break;;
-    "--help"|"-h"|"help" ) absences::cout absences.help; break;;
+    "alreat") aleart; break;;
+    "--help"|"-h"|"help" ) absence.help; break;;
   esac
 done
 # }}}
