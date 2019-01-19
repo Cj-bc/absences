@@ -14,6 +14,18 @@ ABSENCE_CONFIGFILE="$HOME/.config/absences/config"
 
 # utility functions {{{
 
+# highlight: add hightlight to the output {{{2
+function highlight()
+{
+  # TODO: I' do this later
+  if [ -p /dev/stdin ];then
+    input=$(cat -)
+    echo "$input"
+  fi
+  return $EX_SUCCESS
+}
+# }}}
+
 # resolveDate: resolve date format {{{2
 # @param <string data>
 # @return <string resolved_data>
