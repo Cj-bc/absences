@@ -129,6 +129,7 @@ function alert()
 
 
 # main loop {{{
+main() {
 for obj in "$@";do
   case "$obj" in
     "add")
@@ -145,4 +146,7 @@ for obj in "$@";do
     "-v"|"--version"|"version") absences.version; break;;
   esac
 done
+}
 # }}}
+
+main "$@"
