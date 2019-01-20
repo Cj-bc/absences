@@ -11,8 +11,18 @@ EX_DATAERR=65
 EX_SUCCESS=0
 ABSENCES_DATAFILE="$HOME/.config/absences/data"
 ABSENCES_CONFIGFILE="$HOME/.config/absences/config"
+ABSENCES_SELF="${BASH_SOURCE[0]}"
 
 # utility functions {{{
+# absences.version: show version info from source code {{{
+function absences.version()
+{
+  local versionline
+  versionline="$(cat "$ABSENCES_SELF" | grep "# @(#) version" | head -n 1)"
+  echo "${versionline/\# @(#)/absences:}"
+  return $EX_SUCCESS
+}
+# }}}
 
 # readConfig: read config file {{{2
 # @param <string key>
@@ -132,6 +142,7 @@ for obj in "$@";do
       ;;
     "alreat") alert; break;;
     "--help"|"-h"|"help" ) absence.help; break;;
+    "-v"|"--version"|"version") absences.version; break;;
   esac
 done
 # }}}
