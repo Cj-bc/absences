@@ -13,7 +13,8 @@ ABSENCES_DATAFILE="$HOME/.config/absences/data"
 ABSENCES_CONFIGFILE="$HOME/.config/absences/config"
 ABSENCES_SELF="${BASH_SOURCE[0]}"
 
-# utility functions {{{
+# functions {{{
+
 # absences.version: show version info from source code {{{
 function absences.version()
 {
