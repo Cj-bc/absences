@@ -11,7 +11,7 @@ EX_DATAERR=65
 EX_SUCCESS=0
 ABSENCES_DATAFILE="$HOME/.config/absences/data"
 ABSENCES_CONFIGFILE="$HOME/.config/absences/config"
-ABSENCES_SELF="${BASH_SOURCE[0]}"
+ABSENCES_SELFDIR="${BASH_SOURCE[0]}"
 
 # functions {{{
 
@@ -19,7 +19,7 @@ ABSENCES_SELF="${BASH_SOURCE[0]}"
 function absences.version()
 {
   local versionline
-  versionline="$(cat "$ABSENCES_SELF" | grep "# @(#) version" | head -n 1)"
+  versionline="$(cat "${ABSENCES_SELFDIR}/absences.sh" | grep "# @(#) version" | head -n 1)"
   echo "${versionline/\# @(#)/absences:}"
   return $EX_SUCCESS
 }
