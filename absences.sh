@@ -9,8 +9,8 @@
 
 EX_DATAERR=65
 EX_SUCCESS=0
-ABSENCE_DATAFILE="$HOME/.config/absences/data"
-ABSENCE_CONFIGFILE="$HOME/.config/absences/config"
+ABSENCES_DATAFILE="$HOME/.config/absences/data"
+ABSENCES_CONFIGFILE="$HOME/.config/absences/config"
 
 # utility functions {{{
 
@@ -21,7 +21,7 @@ function readConfig()
 {
   local key=$0
   local value
-  value=$(shyaml get-value alert_line.default "$key" < "$ABSENCE_CONFIGFILE" 2>/dev/null) || return $EX_DATAERR
+  value=$(shyaml get-value alert_line.default "$key" < "$ABSENCES_CONFIGFILE" 2>/dev/null) || return $EX_DATAERR
   echo "$value"
   return $EX_SUCCESS
 }
@@ -67,13 +67,13 @@ function writeData()
   datenumber="$(resolveDate "$2")"
 
   {
-    grep "$category" "$ABSENCE_DATAFILE" 2>/dev/null &&
+    grep "$category" "$ABSENCES_DATAFILE" 2>/dev/null &&
     [[ $datenumber =~ [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9] ]]
   } || return $EX_DATAERR
 
   local temp; temp="$(mktemp)"
-  sed "s/\(${category}: .*$\)/\1 $datenumber/" "$ABSENCE_DATAFILE" > "$temp"
-  cat "$temp" > "$ABSENCE_DATAFILE" && rm "$temp"
+  sed "s/\(${category}: .*$\)/\1 $datenumber/" "$ABSENCES_DATAFILE" > "$temp"
+  cat "$temp" > "$ABSENCES_DATAFILE" && rm "$temp"
 
   return $EX_SUCCESS
 }
@@ -85,9 +85,9 @@ function writeData()
 function writeData.addCategory()
 {
   if [ "$#" -eq 1 ];then
-    echo "${1}:" >> $ABSENCE_DATAFILE
+    echo "${1}:" >> $ABSENCES_DATAFILE
   else
-    echo "${1}: ${2}:" >> $ABSENCE_DATAFILE
+    echo "${1}: ${2}:" >> $ABSENCES_DATAFILE
   fi
   return $EX_SUCCESS
 }
@@ -109,7 +109,7 @@ function alert()
     if [[ $remain -lt $alert_line ]]; then
       alerted_list+="$category: $remain"
     fi
-  done < "$ABSENCE_DATAFILE"
+  done < "$ABSENCES_DATAFILE"
 
   echo "${alerted_list[@]}" | highlight
 }
