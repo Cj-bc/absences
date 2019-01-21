@@ -119,7 +119,7 @@ function alert()
     remain=$((limit - absences))
 
     if [[ $remain -lt $alert_line ]]; then
-      alerted_list+="$category: $remain"
+      alerted_list+=("$category: $remain")
     fi
   done < "$ABSENCES_DATAFILE"
 
