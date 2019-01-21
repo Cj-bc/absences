@@ -20,8 +20,8 @@ function absences.version()
 {
   local self="${ABSENCES_SELFDIR}/absences.sh"
   local versionline
-  versionline="$(cat "$self" | grep "# @(#) version" | head -n 1)"
-  echo "${versionline/\# @(#)/absences:}"
+  versionline="$(grep "# @(#) version" < "$self" | head -n 1)"
+  echo "${versionline/\# @(\#)/absences:}"
   return $EX_SUCCESS
 }
 # }}}
