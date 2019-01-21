@@ -11,7 +11,7 @@ EX_DATAERR=65
 EX_SUCCESS=0
 ABSENCES_DATAFILE="$HOME/.config/absences/data"
 ABSENCES_CONFIGFILE="$HOME/.config/absences/config"
-ABSENCES_SELFDIR="${BASH_SOURCE[0]}"
+ABSENCES_SELFDIR="${BASH_SOURCE[0]%/*}"
 
 # functions {{{
 
