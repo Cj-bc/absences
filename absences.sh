@@ -18,8 +18,9 @@ ABSENCES_SELFDIR="${BASH_SOURCE[0]%/*}"
 # absences.version: show version info from source code {{{
 function absences.version()
 {
+  local self="${ABSENCES_SELFDIR}/absences.sh"
   local versionline
-  versionline="$(cat "${ABSENCES_SELFDIR}/absences.sh" | grep "# @(#) version" | head -n 1)"
+  versionline="$(cat "$self" | grep "# @(#) version" | head -n 1)"
   echo "${versionline/\# @(#)/absences:}"
   return $EX_SUCCESS
 }
