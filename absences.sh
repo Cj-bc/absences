@@ -97,9 +97,9 @@ function writeData()
 function writeData.addCategory()
 {
   if [ "$#" -eq 1 ];then
-    echo "${1}:" >> $ABSENCES_DATAFILE
+    echo "${1}:" >> "$ABSENCES_DATAFILE"
   else
-    echo "${1}: ${2}:" >> $ABSENCES_DATAFILE
+    echo "${1}: ${2}:" >> "$ABSENCES_DATAFILE"
   fi
   return $EX_SUCCESS
 }
