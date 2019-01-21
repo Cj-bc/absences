@@ -144,7 +144,7 @@ for obj in "$@";do
       break
       ;;
     "alreat") alert; break;;
-    "--help"|"-h"|"help" ) absence.help; break;;
+    "--help"|"-h"|"help" ) absences.help; break;;
     "-v"|"--version"|"version") absences.version; break;;
   esac
 done
